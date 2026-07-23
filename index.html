@@ -15,20 +15,29 @@
 
   <style>
     :root{
-  --bg:#07101f;
-  --panel:#0f1b33;
-  --panel2:#132347;
-  --text:#eef5ff;
-  --muted:#b6c5e6;
-
-  /* Colores inspirados en tu CV */
-  --accent:#2ec5ff;
-  --accent2:#00e0c6;
-  --accent3:#5aa9ff;
-
-  --line:rgba(255,255,255,.08);
-  --shadow:0 14px 34px rgba(0,0,0,.42);
-  }
+      /* Fondo general */
+      --bg:#eef6f0;
+      --bg2:#dcefe3;
+      --bg3:#cfe7d7;
+    
+      /* Tarjetas */
+      --panel:rgba(255,255,255,.72);
+      --panel2:rgba(244,252,246,.88);
+    
+      /* Texto */
+      --text:#1d3528;
+      --muted:#567364;
+    
+      /* Verdes inspirados en tu CV */
+      --accent:#7bbf9a;
+      --accent2:#5fae84;
+      --accent3:#9bd3b2;
+      --accent4:#3f8f66;
+    
+      /* Bordes y sombras */
+      --line:rgba(63,143,102,.16);
+      --shadow:0 18px 38px rgba(53,94,73,.12);
+    }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -36,7 +45,13 @@
       margin:0;
       font-family:'Space Grotesk',sans-serif;
       color:var(--text);
-      background:linear-gradient(180deg,#08101f,#0b1020 35%,#0a1126);
+    
+      background:
+        radial-gradient(circle at 15% 15%, rgba(155,211,178,.35), transparent 22%),
+        radial-gradient(circle at 85% 20%, rgba(123,191,154,.28), transparent 26%),
+        radial-gradient(circle at 50% 80%, rgba(95,174,132,.18), transparent 30%),
+        linear-gradient(180deg,var(--bg),var(--bg2) 48%,var(--bg3));
+    
       overflow-x:hidden;
     }
 
@@ -207,32 +222,93 @@
       position:relative;
     }
 
-    .hero{
-      width:min(1100px,100%);
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:28px;
-      align-items:center;
+    .hero-card,
+      .card{
+        background:var(--panel);
+        border:1px solid var(--line);
+        border-radius:26px;
+        padding:28px;
+        box-shadow:var(--shadow);
+        backdrop-filter:blur(14px);
+      }
+      
+      .hero-card{
+        background:linear-gradient(180deg,var(--panel2),rgba(255,255,255,.65));
+      }
+    .polyhedron{
+      position:absolute;
+      width:140px;
+      height:140px;
+      border:2px solid rgba(63,143,102,.18);
+      transform:rotate(45deg);
+      animation:spinPoly 28s linear infinite;
     }
-
-    .hero-card{
-      background:rgba(17,25,51,.78);
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:40px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
+    .polyhedron::before,
+    .polyhedron::after{
+      content:'';
+      position:absolute;
+      inset:18px;
+      border:2px solid rgba(95,174,132,.16);
     }
-
+    .polyhedron::after{
+      inset:36px;
+    }
+    .p1{left:10%; top:18%;}
+    .p2{right:12%; top:56%;}
+    
+    .golden-spiral{
+      position:absolute;
+      width:320px;
+      height:320px;
+      left:58%;
+      top:14%;
+      border:2px solid rgba(123,191,154,.18);
+      border-radius:50%;
+      box-shadow:
+        inset 0 0 0 36px rgba(123,191,154,.08),
+        inset 0 0 0 72px rgba(95,174,132,.07),
+        inset 0 0 0 108px rgba(63,143,102,.06);
+    }
+    
+    .triangle-grid{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(60deg, transparent 49%, rgba(63,143,102,.05) 50%, transparent 51%),
+        linear-gradient(-60deg, transparent 49%, rgba(63,143,102,.05) 50%, transparent 51%);
+      background-size:140px 140px;
+      opacity:.5;
+    }
+    
+    .r3{
+      width:220px;
+      height:220px;
+      left:18%;
+      top:62%;
+      border-color:rgba(123,191,154,.18);
+    }
+    
+    .r4{
+      width:160px;
+      height:160px;
+      left:72%;
+      top:34%;
+      border-color:rgba(95,174,132,.2);
+    }
+    
+    @keyframes spinPoly{
+      from{transform:rotate(45deg)}
+      to{transform:rotate(405deg)}
+    }
     .eyebrow{
       display:inline-flex;
       align-items:center;
       gap:10px;
       padding:8px 14px;
       border-radius:999px;
-      background:rgba(97,218,251,.12);
-      border:1px solid rgba(97,218,251,.28);
-      color:var(--accent);
+      background:rgba(123,191,154,.16);
+      border:1px solid rgba(95,174,132,.28);
+      color:var(--accent4);
       font-size:.92rem;
       margin-bottom:18px;
     }
@@ -270,9 +346,13 @@
     }
 
     .btn.primary{
-      background:linear-gradient(135deg,var(--accent),#2ea8ff);
-      color:#03111d;
+      background:linear-gradient(135deg,var(--accent2),var(--accent));
+      color:white;
     }
+
+.btn.primary:hover{
+  background:linear-gradient(135deg,var(--accent4),var(--accent2));
+}
 
     .btn.secondary{
       border-color:rgba(255,255,255,.12);
@@ -336,6 +416,68 @@
     .section-title h2{
       margin:0;
       font-size:1.8rem;
+    }
+
+    .metric .value{
+      color:var(--accent4);
+    }
+    
+    .section-title .dot{
+      background:linear-gradient(135deg,var(--accent2),var(--accent3));
+      box-shadow:0 0 16px rgba(95,174,132,.28);
+    }
+    
+    a{
+      color:var(--accent4);
+      text-decoration:none;
+    }
+    
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .math-3d-card{
+      min-height:320px;
+    }
+    
+    .wireframe-wrap{
+      perspective:1000px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px 0 26px;
+    }
+    
+    .wireframe{
+      position:relative;
+      width:180px;
+      height:180px;
+      transform-style:preserve-3d;
+      animation:rotate3d 14s linear infinite;
+    }
+    
+    .edge{
+      position:absolute;
+      inset:0;
+      border:2px solid rgba(63,143,102,.42);
+      border-radius:12px;
+    }
+    
+    .e1{transform:rotateY(0deg) translateZ(48px);}
+    .e2{transform:rotateY(90deg) translateZ(48px);}
+    .e3{transform:rotateX(90deg) translateZ(48px);}
+    .e4{transform:rotateX(0deg) translateZ(-48px);}
+    .e5{transform:rotateY(45deg) translateZ(68px);}
+    .e6{transform:rotateX(45deg) translateZ(-68px);}
+    
+    @keyframes rotate3d{
+      from{transform:rotateX(0deg) rotateY(0deg)}
+      to{transform:rotateX(360deg) rotateY(360deg)}
+    }
+    
+    .muted{
+      color:var(--muted);
+      line-height:1.7;
     }
 
     .card{
@@ -714,35 +856,36 @@
         <h2>Elemento interactivo</h2>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Calculadora rápida</h3>
-          <div class="calculator">
-            <input id="calc-display" class="display" type="text" value="0" readonly>
-
-            <div class="keys">
-              <button onclick="press('7')">7</button>
-              <button onclick="press('8')">8</button>
-              <button onclick="press('9')">9</button>
-              <button onclick="press('/')">/</button>
-
-              <button onclick="press('4')">4</button>
-              <button onclick="press('5')">5</button>
-              <button onclick="press('6')">6</button>
-              <button onclick="press('*')">*</button>
-
-              <button onclick="press('1')">1</button>
-              <button onclick="press('2')">2</button>
-              <button onclick="press('3')">3</button>
-              <button onclick="press('-')">-</button>
-
-              <button onclick="clearDisplay()">C</button>
-              <button onclick="press('0')">0</button>
-              <button class="accent" onclick="calculate()">=</button>
-              <button onclick="press('+')">+</button>
-            </div>
+      <div class="card math-3d-card">
+        <h3>Geometría matemática 3D</h3>
+      
+        <div class="wireframe-wrap">
+          <div class="wireframe">
+            <div class="edge e1"></div>
+            <div class="edge e2"></div>
+            <div class="edge e3"></div>
+            <div class="edge e4"></div>
+            <div class="edge e5"></div>
+            <div class="edge e6"></div>
           </div>
         </div>
+      
+        <p class="muted">
+          Representación estilizada de un poliedro en estructura alámbrica (wireframe),
+          inspirada en geometría euclidiana, teoría de grafos y visualización matemática.
+        </p>
+      </div>
+
+    <!-- Geometría extra -->
+    <div class="polyhedron p1"></div>
+    <div class="polyhedron p2"></div>
+    
+    <div class="golden-spiral"></div>
+    
+    <div class="triangle-grid"></div>
+    
+    <div class="circle-ring r3"></div>
+    <div class="circle-ring r4"></div>
 
         <div class="card">
           <h3>Capacidades y competencias</h3>

@@ -3,98 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CV Matemático | Nombre Apellido</title>
+  <title>Emilio Ruiz Betanzos | CV Interactivo</title>
 
-  <!-- Fuente -->
+  <!-- Fuente más legible -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
     :root{
-      /* Fondo general */
       --bg:#eef6f0;
       --bg2:#dcefe3;
       --bg3:#cfe7d7;
-    
-      /* Tarjetas */
-      --panel:rgba(255,255,255,.72);
-      --panel2:rgba(244,252,246,.88);
-    
-      /* Texto */
-      --text:#1d3528;
-      --muted:#567364;
-    
-      /* Verdes inspirados en tu CV */
+
+      --panel:rgba(255,255,255,.78);
+      --panel2:rgba(244,252,246,.92);
+
+      --text:#183224;
+      --muted:#587566;
+
       --accent:#7bbf9a;
       --accent2:#5fae84;
       --accent3:#9bd3b2;
       --accent4:#3f8f66;
-    
-      /* Bordes y sombras */
+
       --line:rgba(63,143,102,.16);
       --shadow:0 18px 38px rgba(53,94,73,.12);
     }
 
     *{box-sizing:border-box}
+
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
-      font-family:'Space Grotesk',sans-serif;
+      font-family:'Inter',sans-serif;
       color:var(--text);
-    
+
       background:
         radial-gradient(circle at 15% 15%, rgba(155,211,178,.35), transparent 22%),
         radial-gradient(circle at 85% 20%, rgba(123,191,154,.28), transparent 26%),
         radial-gradient(circle at 50% 80%, rgba(95,174,132,.18), transparent 30%),
         linear-gradient(180deg,var(--bg),var(--bg2) 48%,var(--bg3));
-    
+
       overflow-x:hidden;
     }
 
-    /* Fondo matemático */
+    /* ===== Fondo matemático ===== */
     .math-bg{
       position:fixed;
       inset:0;
       pointer-events:none;
       z-index:-1;
       overflow:hidden;
-      <!-- Geometría adicional -->
-      <div class="triangle t1"></div>
-      <div class="triangle t2"></div>
-      
-      <div class="hexagon h1"></div>
-      <div class="hexagon h2"></div>
-      
-      <div class="circle-ring r1"></div>
-      <div class="circle-ring r2"></div>
-      
-      <div class="construction-lines"></div>
-      
-      <div class="nodes">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
     }
+
+    .grid{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(63,143,102,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(63,143,102,.06) 1px, transparent 1px);
+      background-size:48px 48px;
+    }
+
     .triangle{
       position:absolute;
       width:0;height:0;
       border-left:90px solid transparent;
       border-right:90px solid transparent;
-      border-bottom:160px solid rgba(46,197,255,.08);
-      animation:rotateSlow 24s linear infinite;
+      border-bottom:160px solid rgba(123,191,154,.10);
+      animation:rotateSlow 26s linear infinite;
     }
-    .t1{left:6%; top:28%;}
+    .t1{left:6%; top:24%;}
     .t2{right:10%; top:58%; transform:scale(.8);}
-    
+
     .hexagon{
       position:absolute;
       width:120px;
       height:68px;
-      background:rgba(0,224,198,.07);
-      border:1px solid rgba(0,224,198,.22);
+      background:rgba(95,174,132,.08);
+      border:1px solid rgba(95,174,132,.22);
     }
     .hexagon::before,
     .hexagon::after{
@@ -106,135 +98,38 @@
     }
     .hexagon::before{
       bottom:100%;
-      border-bottom:34px solid rgba(0,224,198,.07);
+      border-bottom:34px solid rgba(95,174,132,.08);
     }
     .hexagon::after{
       top:100%;
-      border-top:34px solid rgba(0,224,198,.07);
+      border-top:34px solid rgba(95,174,132,.08);
     }
-    .h1{left:34%; top:16%; animation:float 20s ease-in-out infinite;}
-    .h2{left:72%; top:40%; animation:float 26s ease-in-out infinite;}
-    
+    .h1{left:30%; top:14%; animation:float 18s ease-in-out infinite;}
+    .h2{left:74%; top:42%; animation:float 24s ease-in-out infinite;}
+
     .circle-ring{
       position:absolute;
-      border:2px solid rgba(90,169,255,.14);
+      border:2px solid rgba(95,174,132,.16);
       border-radius:50%;
     }
-    .r1{width:260px;height:260px;left:62%;top:8%;}
-    .r2{width:180px;height:180px;left:18%;top:60%;}
-    
-    .construction-lines{
+    .r1{width:240px;height:240px;left:64%;top:10%;}
+    .r2{width:180px;height:180px;left:18%;top:66%;}
+    .r3{width:320px;height:320px;left:54%;top:8%;}
+
+    .golden-spiral{
       position:absolute;
-      inset:0;
-      background:
-        linear-gradient(60deg, transparent 49%, rgba(255,255,255,.05) 50%, transparent 51%),
-        linear-gradient(-60deg, transparent 49%, rgba(255,255,255,.05) 50%, transparent 51%);
-      background-size:220px 220px;
-      opacity:.35;
-    }
-    
-    .nodes{
-      position:absolute;
-      inset:0;
-    }
-    .nodes span{
-      position:absolute;
-      width:10px;height:10px;
+      width:320px;
+      height:320px;
+      left:56%;
+      top:12%;
+      border:2px solid rgba(123,191,154,.18);
       border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 14px rgba(46,197,255,.7);
-    }
-    .nodes span:nth-child(1){left:14%; top:22%;}
-    .nodes span:nth-child(2){left:26%; top:30%;}
-    .nodes span:nth-child(3){left:38%; top:18%;}
-    .nodes span:nth-child(4){left:30%; top:44%;}
-    .nodes span:nth-child(5){left:46%; top:36%;}
-    
-    .nodes::before{
-      content:'';
-      position:absolute;
-      left:14%;
-      top:22%;
-      width:32%;
-      height:22%;
-      border-left:2px solid rgba(46,197,255,.18);
-      border-bottom:2px solid rgba(46,197,255,.18);
-      border-top:2px solid rgba(46,197,255,.18);
-      transform:skew(-18deg);
-    }
-    
-    @keyframes rotateSlow{
-      from{transform:rotate(0deg)}
-      to{transform:rotate(360deg)}
-    }
-    .symbol{
-      position:absolute;
-      color:rgba(97,218,251,.14);
-      font-weight:700;
-      animation:float 18s linear infinite;
-      user-select:none;
-    }
-    .symbol:nth-child(1){left:8%; top:10%; font-size:64px; animation-duration:22s}
-    .symbol:nth-child(2){left:22%; top:72%; font-size:54px; animation-duration:26s}
-    .symbol:nth-child(3){left:70%; top:18%; font-size:72px; animation-duration:20s}
-    .symbol:nth-child(4){left:84%; top:64%; font-size:60px; animation-duration:28s}
-    .symbol:nth-child(5){left:46%; top:34%; font-size:90px; animation-duration:24s}
-    .symbol:nth-child(6){left:58%; top:82%; font-size:58px; animation-duration:30s}
-
-    @keyframes float{
-      0%{transform:translateY(0) rotate(0deg)}
-      50%{transform:translateY(-24px) rotate(8deg)}
-      100%{transform:translateY(0) rotate(0deg)}
+      box-shadow:
+        inset 0 0 0 36px rgba(123,191,154,.08),
+        inset 0 0 0 72px rgba(95,174,132,.07),
+        inset 0 0 0 108px rgba(63,143,102,.06);
     }
 
-    .grid{
-      position:absolute;
-      inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size:44px 44px;
-      mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 95%);
-    }
-
-    .curve{
-      position:absolute;
-      width:140%;
-      height:220px;
-      left:-20%;
-      top:22%;
-      border-top:2px solid rgba(139,92,246,.28);
-      border-radius:50%;
-      transform:rotate(-6deg);
-    }
-    .curve:nth-child(8){
-      top:58%;
-      border-top-color:rgba(97,218,251,.28);
-      transform:rotate(5deg);
-    }
-
-    header{
-      min-height:88vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:64px 24px 32px;
-      position:relative;
-    }
-
-    .hero-card,
-      .card{
-        background:var(--panel);
-        border:1px solid var(--line);
-        border-radius:26px;
-        padding:28px;
-        box-shadow:var(--shadow);
-        backdrop-filter:blur(14px);
-      }
-      
-      .hero-card{
-        background:linear-gradient(180deg,var(--panel2),rgba(255,255,255,.65));
-      }
     .polyhedron{
       position:absolute;
       width:140px;
@@ -250,56 +145,54 @@
       inset:18px;
       border:2px solid rgba(95,174,132,.16);
     }
-    .polyhedron::after{
-      inset:36px;
+    .polyhedron::after{inset:36px;}
+    .p1{left:8%; top:18%;}
+    .p2{right:12%; top:60%;}
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-18px)}
     }
-    .p1{left:10%; top:18%;}
-    .p2{right:12%; top:56%;}
-    
-    .golden-spiral{
-      position:absolute;
-      width:320px;
-      height:320px;
-      left:58%;
-      top:14%;
-      border:2px solid rgba(123,191,154,.18);
-      border-radius:50%;
-      box-shadow:
-        inset 0 0 0 36px rgba(123,191,154,.08),
-        inset 0 0 0 72px rgba(95,174,132,.07),
-        inset 0 0 0 108px rgba(63,143,102,.06);
+    @keyframes rotateSlow{
+      from{transform:rotate(0deg)}
+      to{transform:rotate(360deg)}
     }
-    
-    .triangle-grid{
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(60deg, transparent 49%, rgba(63,143,102,.05) 50%, transparent 51%),
-        linear-gradient(-60deg, transparent 49%, rgba(63,143,102,.05) 50%, transparent 51%);
-      background-size:140px 140px;
-      opacity:.5;
-    }
-    
-    .r3{
-      width:220px;
-      height:220px;
-      left:18%;
-      top:62%;
-      border-color:rgba(123,191,154,.18);
-    }
-    
-    .r4{
-      width:160px;
-      height:160px;
-      left:72%;
-      top:34%;
-      border-color:rgba(95,174,132,.2);
-    }
-    
     @keyframes spinPoly{
       from{transform:rotate(45deg)}
       to{transform:rotate(405deg)}
     }
+
+    /* ===== Layout ===== */
+    header{
+      min-height:88vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:64px 24px 32px;
+    }
+
+    .hero{
+      width:min(1120px,100%);
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:26px;
+      align-items:center;
+    }
+
+    .hero-card,
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg,var(--panel2),rgba(255,255,255,.7));
+    }
+
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -311,6 +204,7 @@
       color:var(--accent4);
       font-size:.92rem;
       margin-bottom:18px;
+      font-weight:600;
     }
 
     h1{
@@ -318,14 +212,15 @@
       font-size:clamp(2.6rem,6vw,4.8rem);
       line-height:.95;
       letter-spacing:-.04em;
+      font-weight:800;
     }
 
     .subtitle{
-      margin-top:14px;
-      font-size:1.15rem;
+      margin-top:16px;
+      font-size:1.08rem;
       color:var(--muted);
-      max-width:60ch;
-      line-height:1.7;
+      line-height:1.8;
+      max-width:62ch;
     }
 
     .hero-actions{
@@ -338,10 +233,8 @@
     .btn{
       padding:14px 20px;
       border-radius:14px;
-      border:1px solid transparent;
       text-decoration:none;
-      color:var(--text);
-      font-weight:600;
+      font-weight:700;
       transition:.25s ease;
     }
 
@@ -350,18 +243,15 @@
       color:white;
     }
 
-.btn.primary:hover{
-  background:linear-gradient(135deg,var(--accent4),var(--accent2));
-}
-
     .btn.secondary{
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
+      border:1px solid rgba(63,143,102,.18);
+      background:rgba(255,255,255,.55);
+      color:var(--text);
     }
 
     .btn:hover{
       transform:translateY(-2px);
-      box-shadow:0 10px 20px rgba(0,0,0,.25);
+      box-shadow:0 10px 18px rgba(53,94,73,.12);
     }
 
     .metrics{
@@ -371,32 +261,31 @@
     }
 
     .metric{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.58);
+      border:1px solid rgba(63,143,102,.12);
       border-radius:18px;
       padding:18px;
     }
 
     .metric .value{
       font-size:2rem;
-      font-weight:700;
-      color:var(--accent);
+      font-weight:800;
+      color:var(--accent4);
     }
 
     .metric .label{
       color:var(--muted);
       font-size:.95rem;
+      margin-top:4px;
     }
 
     main{
-      width:min(1100px,100%);
+      width:min(1120px,100%);
       margin:0 auto;
       padding:0 24px 80px;
     }
 
-    section{
-      margin-top:44px;
-    }
+    section{margin-top:42px;}
 
     .section-title{
       display:flex;
@@ -409,84 +298,14 @@
       width:14px;
       height:14px;
       border-radius:50%;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      box-shadow:0 0 20px rgba(97,218,251,.45);
+      background:linear-gradient(135deg,var(--accent2),var(--accent3));
+      box-shadow:0 0 16px rgba(95,174,132,.28);
     }
 
     .section-title h2{
       margin:0;
       font-size:1.8rem;
-    }
-
-    .metric .value{
-      color:var(--accent4);
-    }
-    
-    .section-title .dot{
-      background:linear-gradient(135deg,var(--accent2),var(--accent3));
-      box-shadow:0 0 16px rgba(95,174,132,.28);
-    }
-    
-    a{
-      color:var(--accent4);
-      text-decoration:none;
-    }
-    
-    a:hover{
-      text-decoration:underline;
-    }
-
-    .math-3d-card{
-      min-height:320px;
-    }
-    
-    .wireframe-wrap{
-      perspective:1000px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px 0 26px;
-    }
-    
-    .wireframe{
-      position:relative;
-      width:180px;
-      height:180px;
-      transform-style:preserve-3d;
-      animation:rotate3d 14s linear infinite;
-    }
-    
-    .edge{
-      position:absolute;
-      inset:0;
-      border:2px solid rgba(63,143,102,.42);
-      border-radius:12px;
-    }
-    
-    .e1{transform:rotateY(0deg) translateZ(48px);}
-    .e2{transform:rotateY(90deg) translateZ(48px);}
-    .e3{transform:rotateX(90deg) translateZ(48px);}
-    .e4{transform:rotateX(0deg) translateZ(-48px);}
-    .e5{transform:rotateY(45deg) translateZ(68px);}
-    .e6{transform:rotateX(45deg) translateZ(-68px);}
-    
-    @keyframes rotate3d{
-      from{transform:rotateX(0deg) rotateY(0deg)}
-      to{transform:rotateX(360deg) rotateY(360deg)}
-    }
-    
-    .muted{
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .card{
-      background:rgba(17,25,51,.78);
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:24px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(8px);
+      font-weight:800;
     }
 
     .timeline{
@@ -497,24 +316,25 @@
     .item{
       position:relative;
       padding-left:22px;
-      border-left:2px solid rgba(97,218,251,.28);
+      border-left:2px solid rgba(95,174,132,.28);
     }
 
     .item::before{
       content:'';
       position:absolute;
       left:-7px;
-      top:6px;
+      top:8px;
       width:12px;
       height:12px;
       border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 14px rgba(97,218,251,.55);
+      background:var(--accent2);
+      box-shadow:0 0 12px rgba(95,174,132,.45);
     }
 
     .item h3{
       margin:0 0 6px;
-      font-size:1.15rem;
+      font-size:1.12rem;
+      font-weight:700;
     }
 
     .meta{
@@ -539,10 +359,11 @@
     .chip{
       padding:8px 12px;
       border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(123,191,154,.14);
+      border:1px solid rgba(95,174,132,.2);
       color:var(--text);
       font-size:.92rem;
+      font-weight:600;
     }
 
     .project{
@@ -551,198 +372,187 @@
       gap:18px;
       align-items:start;
       padding:18px 0;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(63,143,102,.12);
     }
 
     .project:last-child{border-bottom:none}
 
-    .project .badge{
+    .badge{
       padding:8px 12px;
       border-radius:999px;
-      background:rgba(139,92,246,.14);
-      border:1px solid rgba(139,92,246,.35);
-      color:#d7c6ff;
+      background:rgba(95,174,132,.14);
+      border:1px solid rgba(95,174,132,.24);
+      color:var(--accent4);
       font-size:.85rem;
+      font-weight:700;
       white-space:nowrap;
     }
 
-    /* Calculadora */
-    .calculator{
-      background:linear-gradient(180deg,var(--panel2),#0d1530);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:22px;
-      padding:22px;
+    /* ===== Figura 3D ===== */
+    .math-3d-card{min-height:320px;}
+
+    .wireframe-wrap{
+      perspective:1000px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px 0 28px;
     }
 
-    .display{
-      width:100%;
-      padding:16px;
+    .wireframe{
+      position:relative;
+      width:180px;
+      height:180px;
+      transform-style:preserve-3d;
+      animation:rotate3d 14s linear infinite;
+    }
+
+    .edge{
+      position:absolute;
+      inset:0;
+      border:2px solid rgba(63,143,102,.42);
       border-radius:14px;
-      border:none;
-      background:#071124;
-      color:var(--text);
-      font-size:1.35rem;
-      text-align:right;
-      margin-bottom:14px;
-      outline:none;
     }
 
-    .keys{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
+    .e1{transform:rotateY(0deg) translateZ(48px);}
+    .e2{transform:rotateY(90deg) translateZ(48px);}
+    .e3{transform:rotateX(90deg) translateZ(48px);}
+    .e4{transform:rotateX(0deg) translateZ(-48px);}
+    .e5{transform:rotateY(45deg) translateZ(68px);}
+    .e6{transform:rotateX(45deg) translateZ(-68px);}
+
+    @keyframes rotate3d{
+      from{transform:rotateX(0deg) rotateY(0deg)}
+      to{transform:rotateX(360deg) rotateY(360deg)}
     }
 
-    .keys button{
-      padding:14px;
-      border:none;
-      border-radius:12px;
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      font-size:1rem;
-      cursor:pointer;
-      transition:.18s ease;
+    a{
+      color:var(--accent4);
+      text-decoration:none;
+      font-weight:600;
     }
 
-    .keys button:hover{
-      transform:translateY(-2px);
-      background:rgba(97,218,251,.16);
-    }
-
-    .keys .accent{
-      background:linear-gradient(135deg,var(--accent),#2ea8ff);
-      color:#03111d;
-      font-weight:700;
-    }
+    a:hover{text-decoration:underline;}
 
     footer{
-      width:min(1100px,100%);
-      margin:36px auto 60px;
+      width:min(1120px,100%);
+      margin:32px auto 56px;
       padding:0 24px;
       color:var(--muted);
       display:flex;
       justify-content:space-between;
       gap:16px;
       flex-wrap:wrap;
+      font-size:.95rem;
     }
 
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      header{min-height:auto;padding-top:40px}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr;}
+      header{min-height:auto;padding-top:44px;}
     }
   </style>
 </head>
+
 <body>
 
   <div class="math-bg">
     <div class="grid"></div>
-    <div class="symbol">∑</div>
-    <div class="symbol">π</div>
-    <div class="symbol">∫</div>
-    <div class="symbol">f(x)</div>
-    <div class="symbol">Δ</div>
-    <div class="symbol">λ</div>
-    <div class="curve"></div>
-    <div class="curve"></div>
+
+    <div class="triangle t1"></div>
+    <div class="triangle t2"></div>
+
+    <div class="hexagon h1"></div>
+    <div class="hexagon h2"></div>
+
+    <div class="circle-ring r1"></div>
+    <div class="circle-ring r2"></div>
+    <div class="circle-ring r3"></div>
+
+    <div class="golden-spiral"></div>
+
+    <div class="polyhedron p1"></div>
+    <div class="polyhedron p2"></div>
   </div>
 
   <header>
     <div class="hero">
-      <div class="hero-card" data-aos="fade-right">
-    <div class="eyebrow">
-      <span>📐</span>
-      Física · Matemáticas · Programación
-    </div>
-  
-    <h1>Emilio Ruiz Betanzos</h1>
-  
-    <p class="subtitle">
-      Estudiante de Licenciatura en Física y Matemáticas en la ESFM-IPN.
-      Me enfoco en aportar al desarrollo de las ciencias mediante el análisis matemático,
-      el pensamiento crítico y la programación científica. Busco resolver problemas complejos
-      de manera creativa, eficiente y con una visión interdisciplinaria.
-    </p>
-  
-    <div class="hero-actions">
-      <a class="btn primary" href="#contacto">Contactar</a>
-      <a class="btn secondary" href="#investigacion">Ver investigación</a>
-    </div>
-  </div>
 
-      <div class="hero-card" data-aos="zoom-in" data-aos-delay="150">
-        <div class="metric">
-        <div class="value">7°</div>
-          <div class="label">Semestre actual</div>
+      <div class="hero-card" data-aos="fade-right">
+        <div class="eyebrow">
+          📐 Física · Matemáticas · Programación
         </div>
-        
-        <div class="metric">
-          <div class="value">B1</div>
-          <div class="label">Nivel de inglés</div>
+
+        <h1>Emilio Ruiz Betanzos</h1>
+
+        <p class="subtitle">
+          Estudiante de Licenciatura en Física y Matemáticas en la ESFM-IPN.
+          Me enfoco en aportar al desarrollo de las ciencias mediante el análisis matemático,
+          el pensamiento crítico y la programación científica. Busco resolver problemas complejos
+          de manera creativa, eficiente y con una visión interdisciplinaria.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#contacto">Contactar</a>
+          <a class="btn secondary" href="#investigacion">Ver investigación</a>
         </div>
-        
-        <div class="metric">
-          <div class="value">2</div>
-          <div class="label">Líneas de investigación</div>
-        </div>
-        
-        <div class="metric">
-          <div class="value">2026</div>
-          <div class="label">EMALCA · Cinvestav</div>
-        </div>
+      </div>
+
+      <div class="hero-card" data-aos="zoom-in" data-aos-delay="120">
+        <div class="metrics">
+          <div class="metric">
+            <div class="value">7°</div>
+            <div class="label">Semestre actual</div>
+          </div>
+
+          <div class="metric">
+            <div class="value">B1</div>
+            <div class="label">Nivel de inglés</div>
+          </div>
+
+          <div class="metric">
+            <div class="value">2</div>
+            <div class="label">Líneas de investigación</div>
+          </div>
+
+          <div class="metric">
+            <div class="value">2026</div>
+            <div class="label">EMALCA · Cinvestav</div>
+          </div>
         </div>
 
         <div class="chips">
           <span class="chip">Python</span>
+          <span class="chip">C++</span>
           <span class="chip">MATLAB</span>
           <span class="chip">LaTeX</span>
-          <span class="chip">R</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Machine Learning</span>
+          <span class="chip">Cómputo Cuántico</span>
+          <span class="chip">Álgebra</span>
         </div>
       </div>
+
     </div>
   </header>
 
   <main>
 
-    <section data-aos="fade-up" data-aos-delay="120">
-      <div class="section-title">
-        <div class="dot"></div>
-        <h2>Estudios especiales</h2>
-      </div>
-    
-      <div class="card timeline">
-        <div class="item">
-          <h3>Escuelas de Verano de Cómputo Cuántico</h3>
-          <div class="meta">CECaV · UNAM · 2024 y 2025</div>
-          <p>Introducción a computación cuántica, circuitos cuánticos y algoritmos cuánticos básicos.</p>
-        </div>
-    
-        <div class="item">
-          <h3>EMALCA</h3>
-          <div class="meta">Cinvestav · 2026</div>
-          <p>Participación en actividades académicas avanzadas de matemáticas para América Latina y el Caribe.</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- Escolaridad -->
     <section id="educacion" data-aos="fade-up">
       <div class="section-title">
         <div class="dot"></div>
         <h2>Escolaridad</h2>
       </div>
-    
+
       <div class="card timeline">
         <div class="item">
           <h3>Licenciatura en Física y Matemáticas</h3>
-          <div class="meta">ESFM · Instituto Politécnico Nacional · 7.º semestre</div>
+          <div class="meta">ESFM · Instituto Politécnico Nacional · Cursando 7.º semestre</div>
           <p>
             Formación en análisis matemático, álgebra, geometría, ecuaciones diferenciales,
             mecánica clásica y herramientas computacionales para investigación científica.
           </p>
         </div>
-    
+
         <div class="item">
           <h3>Técnico en Programación</h3>
           <div class="meta">2020 · 2023</div>
@@ -754,79 +564,41 @@
       </div>
     </section>
 
-    <section id="habilidades" data-aos="fade-up" data-aos-delay="180">
+    <!-- Estudios especiales -->
+    <section data-aos="fade-up" data-aos-delay="120">
       <div class="section-title">
         <div class="dot"></div>
-        <h2>Habilidades técnicas</h2>
+        <h2>Estudios especiales</h2>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Programación</h3>
-          <div class="chips">
-            <span class="chip">Python</span>
-            <span class="chip">C++</span>
-            <span class="chip">MATLAB</span>
-            <span class="chip">R</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">SQL</span>
-          </div>
+      <div class="card timeline">
+        <div class="item">
+          <h3>Escuelas de Verano de Cómputo Cuántico</h3>
+          <div class="meta">CECaV · UNAM · 2024 y 2025</div>
+          <p>
+            Introducción a computación cuántica, circuitos cuánticos y algoritmos cuánticos básicos.
+          </p>
         </div>
 
-        <div class="card">
-          <h3>Matemáticas aplicadas</h3>
-          <div class="chips">
-            <span class="chip">Optimización</span>
-            <span class="chip">Probabilidad</span>
-            <span class="chip">Estadística</span>
-            <span class="chip">Métodos numéricos</span>
-            <span class="chip">Análisis de Fourier</span>
-            <span class="chip">Ecuaciones diferenciales</span>
-          </div>
+        <div class="item">
+          <h3>EMALCA</h3>
+          <div class="meta">Cinvestav · 2026</div>
+          <p>
+            Participación en actividades académicas avanzadas de matemáticas para América Latina y el Caribe.
+          </p>
         </div>
       </div>
     </section>
 
-    <section id="proyectos" data-aos="fade-up" data-aos-delay="240">
-      <div class="section-title">
-        <div class="dot"></div>
-        <h2>Proyectos destacados</h2>
-      </div>
-
-      <div class="card">
-        <div class="project">
-          <div>
-            <h3>Simulador de sistemas dinámicos</h3>
-            <p>Herramienta para visualizar órbitas, estabilidad y comportamiento caótico en sistemas no lineales.</p>
-          </div>
-          <div class="badge">Python</div>
-        </div>
-
-        <div class="project">
-          <div>
-            <h3>Dashboard estadístico</h3>
-            <p>Panel interactivo para análisis de indicadores y visualización avanzada de datos.</p>
-          </div>
-          <div class="badge">Power BI</div>
-        </div>
-
-        <div class="project">
-          <div>
-            <h3>Automatización de reportes</h3>
-            <p>Generación automática de reportes en PDF y Excel a partir de bases de datos institucionales.</p>
-          </div>
-          <div class="badge">LaTeX</div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Investigación -->
     <section id="investigacion" data-aos="fade-up" data-aos-delay="180">
       <div class="section-title">
         <div class="dot"></div>
         <h2>Investigación · Beca BEIFI</h2>
       </div>
-    
+
       <div class="card">
+
         <div class="project">
           <div>
             <h3>Estudio de flujo de materiales complejos</h3>
@@ -837,28 +609,66 @@
           </div>
           <div class="badge">Física aplicada</div>
         </div>
-    
+
         <div class="project">
           <div>
             <h3>Polinomios de Schur y sus aplicaciones</h3>
             <p>
-              Estudio de propiedades algebraicas y aplicaciones en combinatoria, teoría de representaciones y funciones simétricas.
+              Estudio de propiedades algebraicas y aplicaciones en combinatoria,
+              teoría de representaciones y funciones simétricas.
             </p>
           </div>
           <div class="badge">Álgebra</div>
         </div>
+
       </div>
     </section>
 
+    <!-- Capacidades -->
+    <section data-aos="fade-up" data-aos-delay="240">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Capacidades y competencias</h2>
+      </div>
+
+      <div class="grid-2">
+
+        <div class="card">
+          <h3>Competencias profesionales</h3>
+          <div class="chips">
+            <span class="chip">Pensamiento crítico</span>
+            <span class="chip">Resolución de problemas</span>
+            <span class="chip">Aprendizaje rápido</span>
+            <span class="chip">Trabajo en equipo</span>
+            <span class="chip">Comunicación asertiva</span>
+            <span class="chip">Creatividad</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Habilidades técnicas</h3>
+          <div class="chips">
+            <span class="chip">Programación científica</span>
+            <span class="chip">Manejo de computadoras</span>
+            <span class="chip">Tecnologías de la información</span>
+            <span class="chip">Análisis matemático</span>
+            <span class="chip">Visualización de datos</span>
+            <span class="chip">Inglés B1</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Figura 3D -->
     <section data-aos="fade-up" data-aos-delay="300">
       <div class="section-title">
         <div class="dot"></div>
-        <h2>Elemento interactivo</h2>
+        <h2>Geometría matemática 3D</h2>
       </div>
 
       <div class="card math-3d-card">
-        <h3>Geometría matemática 3D</h3>
-      
+
         <div class="wireframe-wrap">
           <div class="wireframe">
             <div class="edge e1"></div>
@@ -869,69 +679,52 @@
             <div class="edge e6"></div>
           </div>
         </div>
-      
-        <p class="muted">
+
+        <p style="color:var(--muted); line-height:1.8;">
           Representación estilizada de un poliedro en estructura alámbrica (wireframe),
           inspirada en geometría euclidiana, teoría de grafos y visualización matemática.
+          Este elemento sustituye la calculadora para mantener una identidad visual más académica
+          y coherente con el perfil de Física y Matemáticas.
         </p>
-      </div>
-
-    <!-- Geometría extra -->
-    <div class="polyhedron p1"></div>
-    <div class="polyhedron p2"></div>
-    
-    <div class="golden-spiral"></div>
-    
-    <div class="triangle-grid"></div>
-    
-    <div class="circle-ring r3"></div>
-    <div class="circle-ring r4"></div>
-
-        <div class="card">
-          <h3>Capacidades y competencias</h3>
-          <div class="chips">
-            <span class="chip">Pensamiento crítico</span>
-            <span class="chip">Resolución de problemas</span>
-            <span class="chip">Aprendizaje rápido</span>
-            <span class="chip">Trabajo en equipo</span>
-            <span class="chip">Comunicación asertiva</span>
-            <span class="chip">Creatividad</span>
-            <span class="chip">Programación científica</span>
-            <span class="chip">Tecnologías de la información</span>
-          </div>
-        </div>
       </div>
     </section>
 
-    <section id="contacto" data-aos="fade-up" data-aos-delay="240">
+    <!-- Contacto -->
+    <section id="contacto" data-aos="fade-up" data-aos-delay="360">
       <div class="section-title">
         <div class="dot"></div>
         <h2>Contacto</h2>
       </div>
-    
+
       <div class="card">
         <div class="grid-2">
+
           <div>
             <p><strong>Teléfono:</strong> 55 3105 3913</p>
             <p><strong>Correo:</strong> ruiz.betanzos.emilio@gmail.com</p>
             <p><strong>Ubicación:</strong> Ciudad de México, México</p>
           </div>
-    
+
           <div>
             <p><strong>GitHub:</strong>
               <a href="https://github.com/RuizEmilio/CV-2025" target="_blank">
                 github.com/RuizEmilio/CV-2025
               </a>
             </p>
-            <p><strong>Áreas de interés:</strong> Matemáticas puras, física matemática, cómputo cuántico y modelado científico.</p>
+
+            <p><strong>Áreas de interés:</strong>
+              Matemáticas puras, física matemática, cómputo cuántico y modelado científico.
+            </p>
           </div>
+
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
-    <span>© 2026 · CV Matemático Interactivo</span>
+    <span>© 2026 · Emilio Ruiz Betanzos · CV Interactivo</span>
     <span>Diseñado con HTML, CSS, JavaScript y AOS</span>
   </footer>
 
@@ -943,26 +736,6 @@
       once: false,
       offset: 120
     });
-
-    const display = document.getElementById('calc-display');
-
-    function press(value){
-      if(display.value === '0') display.value = value;
-      else display.value += value;
-    }
-
-    function clearDisplay(){
-      display.value = '0';
-    }
-
-    function calculate(){
-      try{
-        display.value = eval(display.value);
-      }catch(e){
-        display.value = 'Error';
-        setTimeout(() => display.value = '0', 1200);
-      }
-    }
   </script>
 
 </body>

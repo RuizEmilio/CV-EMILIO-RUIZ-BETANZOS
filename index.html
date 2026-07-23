@@ -15,16 +15,20 @@
 
   <style>
     :root{
-      --bg:#0b1020;
-      --panel:#111933;
-      --panel2:#172247;
-      --text:#eaf1ff;
-      --muted:#a9b6d3;
-      --accent:#61dafb;
-      --accent2:#8b5cf6;
-      --line:rgba(255,255,255,.08);
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-    }
+  --bg:#07101f;
+  --panel:#0f1b33;
+  --panel2:#132347;
+  --text:#eef5ff;
+  --muted:#b6c5e6;
+
+  /* Colores inspirados en tu CV */
+  --accent:#2ec5ff;
+  --accent2:#00e0c6;
+  --accent3:#5aa9ff;
+
+  --line:rgba(255,255,255,.08);
+  --shadow:0 14px 34px rgba(0,0,0,.42);
+  }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -43,6 +47,110 @@
       pointer-events:none;
       z-index:-1;
       overflow:hidden;
+      <!-- Geometría adicional -->
+      <div class="triangle t1"></div>
+      <div class="triangle t2"></div>
+      
+      <div class="hexagon h1"></div>
+      <div class="hexagon h2"></div>
+      
+      <div class="circle-ring r1"></div>
+      <div class="circle-ring r2"></div>
+      
+      <div class="construction-lines"></div>
+      
+      <div class="nodes">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    }
+    .triangle{
+      position:absolute;
+      width:0;height:0;
+      border-left:90px solid transparent;
+      border-right:90px solid transparent;
+      border-bottom:160px solid rgba(46,197,255,.08);
+      animation:rotateSlow 24s linear infinite;
+    }
+    .t1{left:6%; top:28%;}
+    .t2{right:10%; top:58%; transform:scale(.8);}
+    
+    .hexagon{
+      position:absolute;
+      width:120px;
+      height:68px;
+      background:rgba(0,224,198,.07);
+      border:1px solid rgba(0,224,198,.22);
+    }
+    .hexagon::before,
+    .hexagon::after{
+      content:'';
+      position:absolute;
+      width:0;
+      border-left:60px solid transparent;
+      border-right:60px solid transparent;
+    }
+    .hexagon::before{
+      bottom:100%;
+      border-bottom:34px solid rgba(0,224,198,.07);
+    }
+    .hexagon::after{
+      top:100%;
+      border-top:34px solid rgba(0,224,198,.07);
+    }
+    .h1{left:34%; top:16%; animation:float 20s ease-in-out infinite;}
+    .h2{left:72%; top:40%; animation:float 26s ease-in-out infinite;}
+    
+    .circle-ring{
+      position:absolute;
+      border:2px solid rgba(90,169,255,.14);
+      border-radius:50%;
+    }
+    .r1{width:260px;height:260px;left:62%;top:8%;}
+    .r2{width:180px;height:180px;left:18%;top:60%;}
+    
+    .construction-lines{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(60deg, transparent 49%, rgba(255,255,255,.05) 50%, transparent 51%),
+        linear-gradient(-60deg, transparent 49%, rgba(255,255,255,.05) 50%, transparent 51%);
+      background-size:220px 220px;
+      opacity:.35;
+    }
+    
+    .nodes{
+      position:absolute;
+      inset:0;
+    }
+    .nodes span{
+      position:absolute;
+      width:10px;height:10px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 14px rgba(46,197,255,.7);
+    }
+    .nodes span:nth-child(1){left:14%; top:22%;}
+    .nodes span:nth-child(2){left:26%; top:30%;}
+    .nodes span:nth-child(3){left:38%; top:18%;}
+    .nodes span:nth-child(4){left:30%; top:44%;}
+    .nodes span:nth-child(5){left:46%; top:36%;}
+    
+    .nodes::before{
+      content:'';
+      position:absolute;
+      left:14%;
+      top:22%;
+      width:32%;
+      height:22%;
+      border-left:2px solid rgba(46,197,255,.18);
+      border-bottom:2px solid rgba(46,197,255,.18);
+      border-top:2px solid rgba(46,197,255,.18);
+      transform:skew(-18deg);
+    }
+    
+    @keyframes rotateSlow{
+      from{transform:rotate(0deg)}
+      to{transform:rotate(360deg)}
     }
     .symbol{
       position:absolute;
@@ -400,42 +508,46 @@
   <header>
     <div class="hero">
       <div class="hero-card" data-aos="fade-right">
-        <div class="eyebrow">
-          <span>📐</span>
-          Matemático · Analista · Programador
-        </div>
-
-        <h1>Nombre Apellido</h1>
-
-        <p class="subtitle">
-          Especialista en modelado matemático, análisis de datos y desarrollo de herramientas computacionales.
-          Experiencia en optimización, estadística, programación científica y visualización de información.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#contacto">Contactar</a>
-          <a class="btn secondary" href="#proyectos">Ver proyectos</a>
-        </div>
-      </div>
+    <div class="eyebrow">
+      <span>📐</span>
+      Física · Matemáticas · Programación
+    </div>
+  
+    <h1>Emilio Ruiz Betanzos</h1>
+  
+    <p class="subtitle">
+      Estudiante de Licenciatura en Física y Matemáticas en la ESFM-IPN.
+      Me enfoco en aportar al desarrollo de las ciencias mediante el análisis matemático,
+      el pensamiento crítico y la programación científica. Busco resolver problemas complejos
+      de manera creativa, eficiente y con una visión interdisciplinaria.
+    </p>
+  
+    <div class="hero-actions">
+      <a class="btn primary" href="#contacto">Contactar</a>
+      <a class="btn secondary" href="#investigacion">Ver investigación</a>
+    </div>
+  </div>
 
       <div class="hero-card" data-aos="zoom-in" data-aos-delay="150">
-        <div class="metrics">
-          <div class="metric">
-            <div class="value">5+</div>
-            <div class="label">Años de experiencia</div>
-          </div>
-          <div class="metric">
-            <div class="value">20+</div>
-            <div class="label">Proyectos desarrollados</div>
-          </div>
-          <div class="metric">
-            <div class="value">10+</div>
-            <div class="label">Herramientas dominadas</div>
-          </div>
-          <div class="metric">
-            <div class="value">3</div>
-            <div class="label">Áreas de investigación</div>
-          </div>
+        <div class="metric">
+        <div class="value">7°</div>
+          <div class="label">Semestre actual</div>
+        </div>
+        
+        <div class="metric">
+          <div class="value">B1</div>
+          <div class="label">Nivel de inglés</div>
+        </div>
+        
+        <div class="metric">
+          <div class="value">2</div>
+          <div class="label">Líneas de investigación</div>
+        </div>
+        
+        <div class="metric">
+          <div class="value">2026</div>
+          <div class="label">EMALCA · Cinvestav</div>
+        </div>
         </div>
 
         <div class="chips">
@@ -452,44 +564,50 @@
 
   <main>
 
-    <section id="experiencia" data-aos="fade-up">
+    <section data-aos="fade-up" data-aos-delay="120">
       <div class="section-title">
         <div class="dot"></div>
-        <h2>Experiencia profesional</h2>
+        <h2>Estudios especiales</h2>
       </div>
-
+    
       <div class="card timeline">
         <div class="item">
-          <h3>Analista de Datos Matemáticos — Empresa XYZ</h3>
-          <div class="meta">2024 · Presente</div>
-          <p>Diseño de modelos predictivos, automatización de reportes y análisis estadístico para la toma de decisiones.</p>
+          <h3>Escuelas de Verano de Cómputo Cuántico</h3>
+          <div class="meta">CECaV · UNAM · 2024 y 2025</div>
+          <p>Introducción a computación cuántica, circuitos cuánticos y algoritmos cuánticos básicos.</p>
         </div>
-
+    
         <div class="item">
-          <h3>Asistente de Investigación — Universidad ABC</h3>
-          <div class="meta">2022 · 2024</div>
-          <p>Investigación en ecuaciones diferenciales y métodos numéricos aplicados a sistemas dinámicos.</p>
+          <h3>EMALCA</h3>
+          <div class="meta">Cinvestav · 2026</div>
+          <p>Participación en actividades académicas avanzadas de matemáticas para América Latina y el Caribe.</p>
         </div>
       </div>
     </section>
 
-    <section id="educacion" data-aos="fade-up" data-aos-delay="120">
+    <section id="educacion" data-aos="fade-up">
       <div class="section-title">
         <div class="dot"></div>
-        <h2>Educación</h2>
+        <h2>Escolaridad</h2>
       </div>
-
+    
       <div class="card timeline">
         <div class="item">
-          <h3>Licenciatura en Matemáticas</h3>
-          <div class="meta">Universidad · 2020 · 2025</div>
-          <p>Énfasis en análisis matemático, álgebra, probabilidad y modelado computacional.</p>
+          <h3>Licenciatura en Física y Matemáticas</h3>
+          <div class="meta">ESFM · Instituto Politécnico Nacional · 7.º semestre</div>
+          <p>
+            Formación en análisis matemático, álgebra, geometría, ecuaciones diferenciales,
+            mecánica clásica y herramientas computacionales para investigación científica.
+          </p>
         </div>
-
+    
         <div class="item">
-          <h3>Diplomado en Ciencia de Datos</h3>
-          <div class="meta">2025</div>
-          <p>Visualización de datos, aprendizaje automático y procesamiento de grandes volúmenes de información.</p>
+          <h3>Técnico en Programación</h3>
+          <div class="meta">2020 · 2023</div>
+          <p>
+            Desarrollo de software, lógica de programación, bases de datos y resolución de problemas
+            mediante tecnologías de la información.
+          </p>
         </div>
       </div>
     </section>
@@ -560,6 +678,36 @@
       </div>
     </section>
 
+    <section id="investigacion" data-aos="fade-up" data-aos-delay="180">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Investigación · Beca BEIFI</h2>
+      </div>
+    
+      <div class="card">
+        <div class="project">
+          <div>
+            <h3>Estudio de flujo de materiales complejos</h3>
+            <p>
+              Investigación del comportamiento de fluidos magnetorreológicos y su respuesta ante campos magnéticos,
+              con énfasis en modelos físicos y simulación matemática.
+            </p>
+          </div>
+          <div class="badge">Física aplicada</div>
+        </div>
+    
+        <div class="project">
+          <div>
+            <h3>Polinomios de Schur y sus aplicaciones</h3>
+            <p>
+              Estudio de propiedades algebraicas y aplicaciones en combinatoria, teoría de representaciones y funciones simétricas.
+            </p>
+          </div>
+          <div class="badge">Álgebra</div>
+        </div>
+      </div>
+    </section>
+
     <section data-aos="fade-up" data-aos-delay="300">
       <div class="section-title">
         <div class="dot"></div>
@@ -597,42 +745,46 @@
         </div>
 
         <div class="card">
-          <h3>Intereses académicos</h3>
-          <ul>
-            <li>Teoría de grafos</li>
-            <li>Optimización convexa</li>
-            <li>Procesamiento de señales</li>
-            <li>Aprendizaje automático</li>
-            <li>Visualización científica</li>
-            <li>Investigación operativa</li>
-          </ul>
+          <h3>Capacidades y competencias</h3>
+          <div class="chips">
+            <span class="chip">Pensamiento crítico</span>
+            <span class="chip">Resolución de problemas</span>
+            <span class="chip">Aprendizaje rápido</span>
+            <span class="chip">Trabajo en equipo</span>
+            <span class="chip">Comunicación asertiva</span>
+            <span class="chip">Creatividad</span>
+            <span class="chip">Programación científica</span>
+            <span class="chip">Tecnologías de la información</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contacto" data-aos="fade-up" data-aos-delay="360">
+    <section id="contacto" data-aos="fade-up" data-aos-delay="240">
       <div class="section-title">
         <div class="dot"></div>
         <h2>Contacto</h2>
       </div>
-
+    
       <div class="card">
         <div class="grid-2">
           <div>
-            <p><strong>Email:</strong> nombre@correo.com</p>
-            <p><strong>Teléfono:</strong> +52 000 000 0000</p>
-            <p><strong>Ciudad:</strong> Ciudad de México, México</p>
+            <p><strong>Teléfono:</strong> 55 3105 3913</p>
+            <p><strong>Correo:</strong> ruiz.betanzos.emilio@gmail.com</p>
+            <p><strong>Ubicación:</strong> Ciudad de México, México</p>
           </div>
-
+    
           <div>
-            <p><strong>LinkedIn:</strong> linkedin.com/in/tuusuario</p>
-            <p><strong>GitHub:</strong> github.com/tuusuario</p>
-            <p><strong>Portafolio:</strong> tuusuario.github.io</p>
+            <p><strong>GitHub:</strong>
+              <a href="https://github.com/RuizEmilio/CV-2025" target="_blank">
+                github.com/RuizEmilio/CV-2025
+              </a>
+            </p>
+            <p><strong>Áreas de interés:</strong> Matemáticas puras, física matemática, cómputo cuántico y modelado científico.</p>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>

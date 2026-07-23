@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV Matemático | Nombre Apellido</title>
+
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#111933;
+      --panel2:#172247;
+      --text:#eaf1ff;
+      --muted:#a9b6d3;
+      --accent:#61dafb;
+      --accent2:#8b5cf6;
+      --line:rgba(255,255,255,.08);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Space Grotesk',sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#08101f,#0b1020 35%,#0a1126);
+      overflow-x:hidden;
+    }
+
+    /* Fondo matemático */
+    .math-bg{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      overflow:hidden;
+    }
+    .symbol{
+      position:absolute;
+      color:rgba(97,218,251,.14);
+      font-weight:700;
+      animation:float 18s linear infinite;
+      user-select:none;
+    }
+    .symbol:nth-child(1){left:8%; top:10%; font-size:64px; animation-duration:22s}
+    .symbol:nth-child(2){left:22%; top:72%; font-size:54px; animation-duration:26s}
+    .symbol:nth-child(3){left:70%; top:18%; font-size:72px; animation-duration:20s}
+    .symbol:nth-child(4){left:84%; top:64%; font-size:60px; animation-duration:28s}
+    .symbol:nth-child(5){left:46%; top:34%; font-size:90px; animation-duration:24s}
+    .symbol:nth-child(6){left:58%; top:82%; font-size:58px; animation-duration:30s}
+
+    @keyframes float{
+      0%{transform:translateY(0) rotate(0deg)}
+      50%{transform:translateY(-24px) rotate(8deg)}
+      100%{transform:translateY(0) rotate(0deg)}
+    }
+
+    .grid{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 95%);
+    }
+
+    .curve{
+      position:absolute;
+      width:140%;
+      height:220px;
+      left:-20%;
+      top:22%;
+      border-top:2px solid rgba(139,92,246,.28);
+      border-radius:50%;
+      transform:rotate(-6deg);
+    }
+    .curve:nth-child(8){
+      top:58%;
+      border-top-color:rgba(97,218,251,.28);
+      transform:rotate(5deg);
+    }
+
+    header{
+      min-height:88vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:64px 24px 32px;
+      position:relative;
+    }
+
+    .hero{
+      width:min(1100px,100%);
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-card{
+      background:rgba(17,25,51,.78);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:40px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(97,218,251,.12);
+      border:1px solid rgba(97,218,251,.28);
+      color:var(--accent);
+      font-size:.92rem;
+      margin-bottom:18px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(2.6rem,6vw,4.8rem);
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .subtitle{
+      margin-top:14px;
+      font-size:1.15rem;
+      color:var(--muted);
+      max-width:60ch;
+      line-height:1.7;
+    }
+
+    .hero-actions{
+      margin-top:26px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 20px;
+      border-radius:14px;
+      border:1px solid transparent;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      transition:.25s ease;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg,var(--accent),#2ea8ff);
+      color:#03111d;
+    }
+
+    .btn.secondary{
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 20px rgba(0,0,0,.25);
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .metric{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .metric .value{
+      font-size:2rem;
+      font-weight:700;
+      color:var(--accent);
+    }
+
+    .metric .label{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    main{
+      width:min(1100px,100%);
+      margin:0 auto;
+      padding:0 24px 80px;
+    }
+
+    section{
+      margin-top:44px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:20px;
+    }
+
+    .section-title .dot{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 20px rgba(97,218,251,.45);
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:1.8rem;
+    }
+
+    .card{
+      background:rgba(17,25,51,.78);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(8px);
+    }
+
+    .timeline{
+      display:grid;
+      gap:18px;
+    }
+
+    .item{
+      position:relative;
+      padding-left:22px;
+      border-left:2px solid rgba(97,218,251,.28);
+    }
+
+    .item::before{
+      content:'';
+      position:absolute;
+      left:-7px;
+      top:6px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 14px rgba(97,218,251,.55);
+    }
+
+    .item h3{
+      margin:0 0 6px;
+      font-size:1.15rem;
+    }
+
+    .meta{
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:10px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .chip{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--text);
+      font-size:.92rem;
+    }
+
+    .project{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:start;
+      padding:18px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .project:last-child{border-bottom:none}
+
+    .project .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(139,92,246,.14);
+      border:1px solid rgba(139,92,246,.35);
+      color:#d7c6ff;
+      font-size:.85rem;
+      white-space:nowrap;
+    }
+
+    /* Calculadora */
+    .calculator{
+      background:linear-gradient(180deg,var(--panel2),#0d1530);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:22px;
+    }
+
+    .display{
+      width:100%;
+      padding:16px;
+      border-radius:14px;
+      border:none;
+      background:#071124;
+      color:var(--text);
+      font-size:1.35rem;
+      text-align:right;
+      margin-bottom:14px;
+      outline:none;
+    }
+
+    .keys{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .keys button{
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-size:1rem;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .keys button:hover{
+      transform:translateY(-2px);
+      background:rgba(97,218,251,.16);
+    }
+
+    .keys .accent{
+      background:linear-gradient(135deg,var(--accent),#2ea8ff);
+      color:#03111d;
+      font-weight:700;
+    }
+
+    footer{
+      width:min(1100px,100%);
+      margin:36px auto 60px;
+      padding:0 24px;
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      header{min-height:auto;padding-top:40px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="math-bg">
+    <div class="grid"></div>
+    <div class="symbol">∑</div>
+    <div class="symbol">π</div>
+    <div class="symbol">∫</div>
+    <div class="symbol">f(x)</div>
+    <div class="symbol">Δ</div>
+    <div class="symbol">λ</div>
+    <div class="curve"></div>
+    <div class="curve"></div>
+  </div>
+
+  <header>
+    <div class="hero">
+      <div class="hero-card" data-aos="fade-right">
+        <div class="eyebrow">
+          <span>📐</span>
+          Matemático · Analista · Programador
+        </div>
+
+        <h1>Nombre Apellido</h1>
+
+        <p class="subtitle">
+          Especialista en modelado matemático, análisis de datos y desarrollo de herramientas computacionales.
+          Experiencia en optimización, estadística, programación científica y visualización de información.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#contacto">Contactar</a>
+          <a class="btn secondary" href="#proyectos">Ver proyectos</a>
+        </div>
+      </div>
+
+      <div class="hero-card" data-aos="zoom-in" data-aos-delay="150">
+        <div class="metrics">
+          <div class="metric">
+            <div class="value">5+</div>
+            <div class="label">Años de experiencia</div>
+          </div>
+          <div class="metric">
+            <div class="value">20+</div>
+            <div class="label">Proyectos desarrollados</div>
+          </div>
+          <div class="metric">
+            <div class="value">10+</div>
+            <div class="label">Herramientas dominadas</div>
+          </div>
+          <div class="metric">
+            <div class="value">3</div>
+            <div class="label">Áreas de investigación</div>
+          </div>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">LaTeX</span>
+          <span class="chip">R</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="experiencia" data-aos="fade-up">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Experiencia profesional</h2>
+      </div>
+
+      <div class="card timeline">
+        <div class="item">
+          <h3>Analista de Datos Matemáticos — Empresa XYZ</h3>
+          <div class="meta">2024 · Presente</div>
+          <p>Diseño de modelos predictivos, automatización de reportes y análisis estadístico para la toma de decisiones.</p>
+        </div>
+
+        <div class="item">
+          <h3>Asistente de Investigación — Universidad ABC</h3>
+          <div class="meta">2022 · 2024</div>
+          <p>Investigación en ecuaciones diferenciales y métodos numéricos aplicados a sistemas dinámicos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="educacion" data-aos="fade-up" data-aos-delay="120">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Educación</h2>
+      </div>
+
+      <div class="card timeline">
+        <div class="item">
+          <h3>Licenciatura en Matemáticas</h3>
+          <div class="meta">Universidad · 2020 · 2025</div>
+          <p>Énfasis en análisis matemático, álgebra, probabilidad y modelado computacional.</p>
+        </div>
+
+        <div class="item">
+          <h3>Diplomado en Ciencia de Datos</h3>
+          <div class="meta">2025</div>
+          <p>Visualización de datos, aprendizaje automático y procesamiento de grandes volúmenes de información.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades" data-aos="fade-up" data-aos-delay="180">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Habilidades técnicas</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Programación</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">C++</span>
+            <span class="chip">MATLAB</span>
+            <span class="chip">R</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">SQL</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Matemáticas aplicadas</h3>
+          <div class="chips">
+            <span class="chip">Optimización</span>
+            <span class="chip">Probabilidad</span>
+            <span class="chip">Estadística</span>
+            <span class="chip">Métodos numéricos</span>
+            <span class="chip">Análisis de Fourier</span>
+            <span class="chip">Ecuaciones diferenciales</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos" data-aos="fade-up" data-aos-delay="240">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Proyectos destacados</h2>
+      </div>
+
+      <div class="card">
+        <div class="project">
+          <div>
+            <h3>Simulador de sistemas dinámicos</h3>
+            <p>Herramienta para visualizar órbitas, estabilidad y comportamiento caótico en sistemas no lineales.</p>
+          </div>
+          <div class="badge">Python</div>
+        </div>
+
+        <div class="project">
+          <div>
+            <h3>Dashboard estadístico</h3>
+            <p>Panel interactivo para análisis de indicadores y visualización avanzada de datos.</p>
+          </div>
+          <div class="badge">Power BI</div>
+        </div>
+
+        <div class="project">
+          <div>
+            <h3>Automatización de reportes</h3>
+            <p>Generación automática de reportes en PDF y Excel a partir de bases de datos institucionales.</p>
+          </div>
+          <div class="badge">LaTeX</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-aos="fade-up" data-aos-delay="300">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Elemento interactivo</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Calculadora rápida</h3>
+          <div class="calculator">
+            <input id="calc-display" class="display" type="text" value="0" readonly>
+
+            <div class="keys">
+              <button onclick="press('7')">7</button>
+              <button onclick="press('8')">8</button>
+              <button onclick="press('9')">9</button>
+              <button onclick="press('/')">/</button>
+
+              <button onclick="press('4')">4</button>
+              <button onclick="press('5')">5</button>
+              <button onclick="press('6')">6</button>
+              <button onclick="press('*')">*</button>
+
+              <button onclick="press('1')">1</button>
+              <button onclick="press('2')">2</button>
+              <button onclick="press('3')">3</button>
+              <button onclick="press('-')">-</button>
+
+              <button onclick="clearDisplay()">C</button>
+              <button onclick="press('0')">0</button>
+              <button class="accent" onclick="calculate()">=</button>
+              <button onclick="press('+')">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Intereses académicos</h3>
+          <ul>
+            <li>Teoría de grafos</li>
+            <li>Optimización convexa</li>
+            <li>Procesamiento de señales</li>
+            <li>Aprendizaje automático</li>
+            <li>Visualización científica</li>
+            <li>Investigación operativa</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" data-aos="fade-up" data-aos-delay="360">
+      <div class="section-title">
+        <div class="dot"></div>
+        <h2>Contacto</h2>
+      </div>
+
+      <div class="card">
+        <div class="grid-2">
+          <div>
+            <p><strong>Email:</strong> nombre@correo.com</p>
+            <p><strong>Teléfono:</strong> +52 000 000 0000</p>
+            <p><strong>Ciudad:</strong> Ciudad de México, México</p>
+          </div>
+
+          <div>
+            <p><strong>LinkedIn:</strong> linkedin.com/in/tuusuario</p>
+            <p><strong>GitHub:</strong> github.com/tuusuario</p>
+            <p><strong>Portafolio:</strong> tuusuario.github.io</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 · CV Matemático Interactivo</span>
+    <span>Diseñado con HTML, CSS, JavaScript y AOS</span>
+  </footer>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: false,
+      offset: 120
+    });
+
+    const display = document.getElementById('calc-display');
+
+    function press(value){
+      if(display.value === '0') display.value = value;
+      else display.value += value;
+    }
+
+    function clearDisplay(){
+      display.value = '0';
+    }
+
+    function calculate(){
+      try{
+        display.value = eval(display.value);
+      }catch(e){
+        display.value = 'Error';
+        setTimeout(() => display.value = '0', 1200);
+      }
+    }
+  </script>
+
+</body>
+</html>
